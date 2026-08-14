@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Wildlife Vision AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<nav class="nav">
+    <a class="logo" href="/">
+        🦓 Wildlife<span>Vision</span>
+    </a>
+
+    <div class="nav-links">
+        <a href="/">Classifier</a>
+        <a href="/about">About</a>
+    </div>
+
+    <div class="nav-pill">AI MODEL • ONLINE</div>
+</nav>
+
+<main class="container">
+
+<section class="hero">
+
+    <div class="eyebrow">
+        AI-POWERED WILDLIFE RECOGNITION
+    </div>
+
+    <h1>
+        See the wild.<br>
+        <span>Understand it.</span>
+    </h1>
+
+    <p>
+        Upload a wildlife photograph and let our trained deep-learning
+        classifier identify Buffalo, Elephant, Rhino or Zebra in seconds.
+    </p>
+
+    <div class="stats">
+        <div class="stat">
+            <strong>98.01%</strong>
+            <small>Validation Accuracy</small>
+        </div>
+
+        <div class="stat">
+            <strong>98.02%</strong>
+            <small>F1 Score</small>
+        </div>
+
+        <div class="stat">
+            <strong>98.11%</strong>
+            <small>Precision</small>
+        </div>
+
+        <div class="stat">
+            <strong>4</strong>
+            <small>Animal Classes</small>
+        </div>
+    </div>
+
+</section>
+
+<section class="grid">
+
+<div class="card">
+
+    <h2>01 — Upload Image</h2>
+    <p style="color:#777">
+        Choose a clear wildlife photograph for the best prediction.
+    </p>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <label class="dropzone" id="dropZone" for="imageInput">
+
+            <div class="upload-icon">↥</div>
+
+            <h3>Drop your image here</h3>
+
+            <p>
+                JPG, PNG, WEBP or BMP
+            </p>
+
+            <span class="browse">
+                Browse Image
+            </span>
+
+        </label>
+
+        <input
+            id="imageInput"
+            type="file"
+            name="image"
+            accept=".jpg,.jpeg,.png,.webp,.bmp"
+            required
+        >
+
+        <div class="filename" id="fileName">
+            No image selected
+        </div>
+
+        <button class="button" type="submit">
+            Analyze Wildlife →
+        </button>
+
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% for category, message in messages %}
+
+            <div class="flash">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+    {% endwith %}
+
+</div>
+
+
+<div class="card">
+
+    <h2>02 — AI Prediction</h2>
+
+    <div class="preview-box">
+
+        {% if image_url %}
+
+            <img
+                id="serverPreview"
+                src="{{ image_url }}"
+                alt="Uploaded wildlife"
+            >
+
+        {% else %}
+
+            <div class="empty">
+                <div style="font-size:50px">🐾</div>
+                <p>Your image preview will appear here.</p>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+    {% if prediction %}
+
+        <div class="result">
+
+            <small>IDENTIFIED WILDLIFE</small>
+
+            <h3>
+                {{ prediction|title }}
+            </h3>
+
+            <div class="confidence">
+                Confidence:
+                <strong>
+                    {{ "%.2f"|format(confidence) }}%
+                </strong>
+            </div>
+
+            <div class="progress">
+                <i style="width:{{ confidence }}%"></i>
+            </div>
+
+        </div>
+
+        <h3>Prediction Breakdown</h3>
+
+        {% for item in results %}
+
+            <div class="row">
+                <span>{{ item.class_name|title }}</span>
+
+                <strong>
+                    {{ "%.2f"|format(item.confidence) }}%
+                </strong>
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+</div>
+
+</section>
+
+
+<section class="wildlife">
+
+    <div class="eyebrow">
+        SUPPORTED SPECIES
+    </div>
+
+    <h2>Recognized Wildlife</h2>
+
+    <div class="wildlife-grid">
+
+        <div class="animal">
+            <span class="emoji">🦬</span>
+            <strong>Buffalo</strong>
+        </div>
+
+        <div class="animal">
+            <span class="emoji">🐘</span>
+            <strong>Elephant</strong>
+        </div>
+
+        <div class="animal">
+            <span class="emoji">🦏</span>
+            <strong>Rhino</strong>
+        </div>
+
+        <div class="animal">
+            <span class="emoji">🦓</span>
+            <strong>Zebra</strong>
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+    Wildlife Vision AI • EfficientNetV2-S • TensorFlow • Flask
+</footer>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+</html>
