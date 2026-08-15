@@ -1,0 +1,24 @@
+{
+  "project": "WildlifeVisionAI",
+  "python": "3.12.0",
+  "classes": [
+    "buffalo",
+    "elephant",
+    "rhino",
+    "zebra"
+  ],
+  "metrics": {
+    "accuracy": "98.01%",
+    "precision": "98.11%",
+    "recall": "98.01%",
+    "f1": "98.02%",
+    "validation_loss": "0.18928"
+  },
+  "render": {
+    "cpu_only": true,
+    "workers": 1,
+    "threads": 2,
+    "timeout": 300,
+    "lazy_model_loading": true
+  }
+}
