@@ -1,4 +1,3 @@
-
 import json
 from pathlib import Path
 
@@ -23,40 +22,165 @@ st.set_page_config(
 )
 
 
+# ============================================================
+# THEME — Savanna palette: charcoal-umber bg, gold + terracotta + olive accents
+# ============================================================
+
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
 
 html, body, [class*="css"] {
     font-family: 'Inter', sans-serif;
 }
 
+h1, h2, h3, h4 { font-family: 'Poppins', sans-serif !important; }
+
+/* ---------- App background: charcoal-umber savanna dusk ---------- */
 .stApp {
     background:
-        radial-gradient(circle at 10% 0%, rgba(255, 107, 0, .14), transparent 28%),
-        radial-gradient(circle at 95% 20%, rgba(255, 150, 50, .09), transparent 25%),
-        #070707;
-    color: #f5f5f5;
+        radial-gradient(circle at 8% -5%, rgba(212, 160, 23, 0.12), transparent 32%),
+        radial-gradient(circle at 95% 15%, rgba(191, 87, 44, 0.10), transparent 30%),
+        radial-gradient(circle at 50% 105%, rgba(107, 122, 66, 0.10), transparent 55%),
+        linear-gradient(160deg, #100d09 0%, #17130d 45%, #0d0b07 100%);
+    color: #f4ecdc;
 }
 
+/* ---------- Sidebar ---------- */
 section[data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #111111, #080808);
-    border-right: 1px solid rgba(255,255,255,.08);
+    background:
+        radial-gradient(circle at 25% 0%, rgba(212,160,23,0.09), transparent 45%),
+        radial-gradient(circle at 90% 45%, rgba(191,87,44,0.08), transparent 50%),
+        linear-gradient(180deg, #14110b 0%, #0a0805 100%);
+    border-right: 1px solid rgba(244,236,220,0.08);
 }
 
+section[data-testid="stSidebar"] * { color: #f4ecdc !important; }
+
+.sb-logo-wrap { text-align: center; padding: 0.6rem 0 0.4rem 0; }
+
+.sb-logo-badge {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 0.55rem auto;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.85rem;
+    background: linear-gradient(135deg, #bf572c, #d4a017 55%, #6b7a42);
+    box-shadow: 0 10px 26px rgba(212,160,23,0.30);
+}
+
+.sb-title {
+    font-size: 1.22rem;
+    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 0.12rem;
+    color: #f4ecdc;
+}
+
+.sb-subtitle {
+    font-size: 0.7rem;
+    color: rgba(244,236,220,0.55) !important;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.sb-section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    margin: 0.6rem 0 0.6rem 0;
+    color: #f4ecdc !important;
+}
+
+.sb-section-label .icon-chip-sm {
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.82rem;
+    background: linear-gradient(135deg, rgba(212,160,23,0.30), rgba(191,87,44,0.28));
+    border: 1px solid rgba(244,236,220,0.14);
+}
+
+.sb-card {
+    background: rgba(244,236,220,0.045);
+    border: 1px solid rgba(244,236,220,0.12);
+    border-radius: 14px;
+    padding: 0.9rem 1rem;
+    margin-bottom: 0.6rem;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.28);
+}
+
+.sb-card p {
+    margin: 0.25rem 0;
+    font-size: 0.86rem;
+    color: rgba(244,236,220,0.85) !important;
+}
+
+.sb-card b { color: #e8bd52 !important; }
+
+.sb-status-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    background: rgba(107,122,66,0.16);
+    border: 1px solid rgba(107,122,66,0.4);
+    border-radius: 12px;
+    padding: 0.6rem 0.85rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: #b7cf8a !important;
+}
+
+.sb-animal-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    background: rgba(244,236,220,0.04);
+    border: 1px solid rgba(244,236,220,0.10);
+    border-radius: 10px;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.88rem;
+}
+
+/* ---------- Hero ---------- */
 .hero {
     padding: 52px 55px;
     border-radius: 30px;
     margin-bottom: 28px;
     background:
-        linear-gradient(135deg, rgba(255,105,0,.13), transparent 45%),
-        linear-gradient(145deg, #181818, #0c0c0c);
-    border: 1px solid rgba(255,105,0,.20);
+        linear-gradient(135deg, rgba(212,160,23,0.14), transparent 45%),
+        linear-gradient(145deg, #1c160e, #100d08);
+    border: 1px solid rgba(212,160,23,0.22);
     box-shadow: 0 25px 70px rgba(0,0,0,.45);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
+    background: rgba(212,160,23,0.06);
+    border-radius: 50%;
 }
 
 .hero .eyebrow {
-    color: #ff7518;
+    color: #e8bd52;
     letter-spacing: 3px;
     font-weight: 800;
     font-size: 12px;
@@ -67,83 +191,122 @@ section[data-testid="stSidebar"] {
     line-height: .98;
     letter-spacing: -4px;
     margin: 12px 0;
+    color: #f4ecdc;
 }
 
 .hero h1 span {
-    color: #ff6b00;
+    color: #bf572c;
 }
 
 .hero p {
-    color: #999;
+    color: #cabb9d;
     max-width: 720px;
     font-size: 17px;
     line-height: 1.7;
 }
 
+/* ---------- Metric cards ---------- */
 .metric {
-    background: #111;
-    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(244,236,220,0.035);
+    border: 1px solid rgba(244,236,220,0.10);
     padding: 18px;
     border-radius: 18px;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.3);
 }
 
 .metric .number {
-    color: #ff7418;
+    color: #e8bd52;
     font-size: 28px;
     font-weight: 900;
+    font-family: 'Poppins', sans-serif;
 }
 
 .metric .label {
-    color: #777;
+    color: #9c8e73;
     font-size: 12px;
     margin-top: 4px;
+    letter-spacing: 0.5px;
 }
 
+/* ---------- Prediction card ---------- */
 .prediction-card {
     padding: 30px;
     border-radius: 24px;
-    background: linear-gradient(145deg,#181818,#0d0d0d);
-    border: 1px solid rgba(255,105,0,.22);
+    background: linear-gradient(145deg, #1c160e, #100d08);
+    border: 1px solid rgba(212,160,23,0.28);
     text-align: center;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.35);
 }
 
 .prediction-label {
-    color: #777;
+    color: #9c8e73;
     font-size: 11px;
     letter-spacing: 3px;
     font-weight: 800;
 }
 
 .prediction-name {
-    color: #ff7418;
+    color: #e8bd52;
     font-size: 42px;
     font-weight: 900;
     margin: 8px 0;
+    font-family: 'Poppins', sans-serif;
 }
 
 .confidence {
-    color: #ddd;
+    color: #e5dcc6;
     font-size: 17px;
 }
 
+/* ---------- File uploader ---------- */
 div[data-testid="stFileUploader"] {
     border-radius: 22px;
 }
 
-.stButton > button {
-    border-radius: 12px;
-    border: 1px solid rgba(255,105,0,.35);
-    background: linear-gradient(135deg,#ff6500,#ff963f);
-    color: #080808;
-    font-weight: 900;
+div[data-testid="stFileUploaderDropzone"] {
+    background:
+        radial-gradient(circle at 20% 15%, rgba(212,160,23,0.09), transparent 55%),
+        radial-gradient(circle at 80% 85%, rgba(191,87,44,0.08), transparent 55%),
+        rgba(244,236,220,0.03);
+    border: 2px dashed rgba(212,160,23,0.45);
+    border-radius: 18px;
 }
 
+div[data-testid="stFileUploaderDropzone"]:hover {
+    border-color: rgba(212,160,23,0.75);
+}
+
+div[data-testid="stFileUploaderDropzone"] button {
+    background: linear-gradient(135deg, #bf572c, #d4a017) !important;
+    color: #100d08 !important;
+    border: none !important;
+    font-weight: 800 !important;
+    border-radius: 10px !important;
+}
+
+/* ---------- Buttons ---------- */
+.stButton > button {
+    border-radius: 12px;
+    border: 1px solid rgba(212,160,23,.35);
+    background: linear-gradient(135deg, #bf572c, #d4a017);
+    color: #100d08;
+    font-weight: 900;
+    box-shadow: 0 8px 20px rgba(212,160,23,0.28);
+}
+
+/* ---------- Progress bar ---------- */
+div[data-testid="stProgress"] > div > div {
+    background: linear-gradient(90deg, #bf572c, #d4a017, #6b7a42) !important;
+}
+
+/* ---------- Animal cards ---------- */
 .animal-card {
     padding: 22px;
-    background: #111;
-    border: 1px solid rgba(255,255,255,.07);
+    background: rgba(244,236,220,0.035);
+    border: 1px solid rgba(244,236,220,0.10);
     border-radius: 20px;
     text-align: center;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.28);
 }
 
 .animal-card .emoji {
@@ -153,11 +316,14 @@ div[data-testid="stFileUploader"] {
 .animal-card b {
     display: block;
     margin-top: 10px;
+    color: #f4ecdc;
 }
+
+hr { border-color: rgba(244,236,220,0.12) !important; }
 
 .footer {
     text-align: center;
-    color: #555;
+    color: #8a7d63;
     padding: 35px 0 10px;
     font-size: 12px;
 }
@@ -212,29 +378,65 @@ def predict(image):
 
 classes = load_classes()
 
+emoji_map = {
+    "buffalo": "🦬",
+    "elephant": "🐘",
+    "rhino": "🦏",
+    "zebra": "🦓"
+}
+
 with st.sidebar:
-    st.markdown("## 🦓 Wildlife Vision")
-    st.caption("Deep Learning Classification System")
+
+    st.markdown(
+        """
+        <div class="sb-logo-wrap">
+            <div class="sb-logo-badge">🦓</div>
+            <div class="sb-title">Wildlife Vision</div>
+            <div class="sb-subtitle">Deep Learning Classification</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
     st.divider()
 
-    st.markdown("### Model")
-    st.success("● Model Ready")
+    st.markdown(
+        '<div class="sb-section-label"><span class="icon-chip-sm">🤖</span> Model</div>',
+        unsafe_allow_html=True,
+    )
 
-    st.markdown("""
-    **Architecture:** EfficientNetV2-S  
-    **Input:** 384 × 384  
-    **Classes:** 4  
-    **Validation Accuracy:** 98.01%
-    """)
+    st.markdown(
+        '<div class="sb-status-chip">● Model Ready</div>',
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
+        """
+        <div class="sb-card">
+            <p>🧠 <b>Architecture:</b> EfficientNetV2-S</p>
+            <p>📐 <b>Input:</b> 384 × 384</p>
+            <p>🎯 <b>Classes:</b> 4</p>
+            <p>📊 <b>Validation Accuracy:</b> 98.01%</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
     st.divider()
 
-    st.markdown("### Supported Wildlife")
-    for animal in classes:
-        st.write(f"• {animal.title()}")
+    st.markdown(
+        '<div class="sb-section-label"><span class="icon-chip-sm">🐾</span> Supported Wildlife</div>',
+        unsafe_allow_html=True,
+    )
+
+    animals_html = "".join(
+        f'<div class="sb-animal-pill">{emoji_map.get(animal.lower(), "🐾")} {animal.title()}</div>'
+        for animal in classes
+    )
+    st.markdown(animals_html, unsafe_allow_html=True)
 
     st.divider()
+
     st.caption("Built with TensorFlow + Streamlit")
 
 
@@ -314,12 +516,6 @@ st.divider()
 st.markdown("### 🐾 Recognized Wildlife")
 
 cols = st.columns(4)
-emoji_map = {
-    "buffalo": "🦬",
-    "elephant": "🐘",
-    "rhino": "🦏",
-    "zebra": "🦓"
-}
 
 for col, animal in zip(cols, classes):
     emoji = emoji_map.get(animal.lower(), "🐾")
